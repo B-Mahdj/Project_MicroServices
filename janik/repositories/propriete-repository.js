@@ -22,31 +22,12 @@ proprieteRepository.getproprieteById = async (id) => {
   }
 };
 
-// proprieteRepository.createpropriete = async (propriete) => {
-//   try {
-//     // Vérifier les propriétés de l'objet "propriete"
-//     // if (!propriete || !propriete.type || !propriete.ville) {
-//     //   throw new Error("Missing required property in propriete object.");
-//     // }
-
-//     // Exécuter la requête 
-//     const request = ('INSERT INTO Propriete SET ?' ,[propriete]);
-//     console.log(request);
-//     const [result] = await db.execute('INSERT INTO Propriete SET ?', [propriete]);
-//     console.log('New propriete created successfully');
-//     return result.insertId;
-//   } catch (err) {
-//     console.log('Error while creating new propriete', err);
-//     throw err;
-//   }
-// };
-
 
 proprieteRepository.createpropriete = async (propriete) => {
   try {
-    const { id_proprietaire, type, adresse, ville, prix, dispo, photo } = propriete;
+    const { id_propriete, id_proprietaire, type, adresse, ville, prix, dispo, photo } = propriete;
     console.log(propriete);
-    const [result] = await db.execute('INSERT INTO Propriete (id_proprietaire, type, adresse, ville, prix, dispo, photo) VALUES (?, ?, ?, ?, ?, ?, ?)', [id_proprietaire, type, adresse, ville, prix, dispo, photo]);
+    const [result] = await db.execute('INSERT INTO Propriete (id_propriete,id_proprietaire, type, adresse, ville, prix, dispo, photo) VALUES (?,?, ?, ?, ?, ?, ?, ?)', [id_propriete,id_proprietaire, type, adresse, ville, prix, dispo, photo]);
     console.log('New propriete created successfully');
     return result.insertId;
   } catch (err) {
@@ -55,11 +36,19 @@ proprieteRepository.createpropriete = async (propriete) => {
   }
 };
 
-
-
 proprieteRepository.updateproprieteById = async (id, propriete) => {
   try {
-    const [result] = await db.execute('UPDATE Propriete SET ? WHERE id_propriete = ?', [propriete, id]);
+    let columnsToUpdate = '';
+    const columnValues = [];
+    for (const [key, value] of Object.entries(propriete)) {
+      if (value !== undefined && key !== 'id_propriete') {
+        columnsToUpdate += `${key}=?,`;
+        columnValues.push(value);
+      }
+    }
+    columnsToUpdate = columnsToUpdate.slice(0, -1); // Enlever la dernière virgule
+    columnValues.push(id);
+    const [result] = await db.execute(`UPDATE Propriete SET ${columnsToUpdate} WHERE id_propriete = ?`, columnValues);
     if (result.affectedRows === 0) {
       console.log(`No propriete found with id ${id}`);
       return 0;

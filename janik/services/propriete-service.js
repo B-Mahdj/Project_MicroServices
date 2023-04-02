@@ -6,7 +6,7 @@ proprieteService.getAllProperties = async () => {
   try {
     return await proprieteRepository.getAllProperties();    
   } catch (error) {
-    console.log('Error while fetching properties 111', error);
+    console.log('Error while fetching properties', error);
   }
 };
 

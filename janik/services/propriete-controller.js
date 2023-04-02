@@ -29,6 +29,7 @@ proprieteController.getproprieteById = async (req, res) => {
 // Controller function to create a new propriete
 proprieteController.createpropriete = async (req, res) => {
   const propriete = req.body;
+  console.log(propriete);
   try {
     await proprieteService.createpropriete(propriete);
     res.send({ message: 'La propriété a été créée avec succès.' });

@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 });
 
 // Mount the propriete API at /api/v1/proprietes/
-app.use('/api/v1/properties', proprieteRoutes);
+app.use('/api/v1/proprietes', proprieteRoutes);
 
 // Start the server
 const port = process.env.PORT || 3000;
