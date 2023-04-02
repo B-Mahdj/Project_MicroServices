@@ -61,4 +61,26 @@ proprieteController.deleteproprieteById = async (req, res) => {
   }
 };
 
+proprieteController.changeDispo = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const result = await proprieteService.changeDispo(id);
+    if (result === 0) {
+      return res.status(404).json({
+        message: `Erreur aucune propriete trouvé au numero ${id}`,
+      });
+    }
+    return res.status(200).json({
+      message: `Propriete numero ${id} mis a jour avec succes`,
+    });
+  } catch (err) {
+    console.log(`Erreur lors de la mise à jour de la propriete numero ${req.params.id}`, err);
+    return res.status(500).json({
+      message: `Erreur lors de la mise à jour de la propriete numero ${req.params.id}`,
+      error: err.message,
+    });
+  }
+};
+
+
 module.exports = proprieteController;
