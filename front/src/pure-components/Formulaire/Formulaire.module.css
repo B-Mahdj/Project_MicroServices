@@ -1,0 +1,91 @@
+.FormContainer{
+    width: 100%;
+    min-height: 80vh;
+    margin : 20px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.LeftForm{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.RightForm{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.InputContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 60%;
+}
+
+.labelInput{
+    font-size: 20px;
+    line-height: 15px;
+    margin : 10px 0 0 0;
+}
+
+.LabelForm{
+    width: 70%;
+    font-size: 22px;
+    line-height: 25px;
+    border: 2px solid #C8C6C6;
+    border-radius: 10px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.InputForm{
+    width: 100%;
+    font-size: 22px;
+    line-height: 25px;
+    margin: 8px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px solid #C8C6C6;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.DisplayImg{
+    width: 70%;
+    height: 30vh;
+    background-color: white;
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ImgLogement{
+    width: 100%;
+    height: 120%;
+}
+
+.btn{
+    width : 40%;
+    font-size: 22px;
+    line-height: 50px;
+    background: #4B6587;
+    border-radius: 21px;
+    text-align: center;
+    color : white;
+    margin : 60px 0 0 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn:hover{
+    cursor: pointer;
+    transform : scale(1.1);
+}
