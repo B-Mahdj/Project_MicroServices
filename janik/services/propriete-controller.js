@@ -1,7 +1,12 @@
 const proprieteService = require('./propriete-service');
 
+// const express = require('express');
+// const router = express.Router();
+
+const proprieteController = {};
+
 // Controller function to get all properties
-exports.getAllProperties = async (req, res) => {
+proprieteController.getAllProperties = async (req, res) => {
   try {
     const properties = await proprieteService.getAllProperties();
     res.send(properties);
@@ -11,7 +16,7 @@ exports.getAllProperties = async (req, res) => {
 };
 
 // Controller function to get a propriete by ID
-exports.getproprieteById = async (req, res) => {
+proprieteController.getproprieteById = async (req, res) => {
   const id = req.params.id;
   try {
     const propriete = await proprieteService.getproprieteById(id);
@@ -22,7 +27,7 @@ exports.getproprieteById = async (req, res) => {
 };
 
 // Controller function to create a new propriete
-exports.createpropriete = async (req, res) => {
+proprieteController.createpropriete = async (req, res) => {
   const propriete = req.body;
   try {
     await proprieteService.createpropriete(propriete);
@@ -33,7 +38,7 @@ exports.createpropriete = async (req, res) => {
 };
 
 // Controller function to update a propriete by ID
-exports.updateproprieteById = async (req, res) => {
+proprieteController.updateproprieteById = async (req, res) => {
   const id = req.params.id;
   const propriete = req.body;
   try {
@@ -45,7 +50,7 @@ exports.updateproprieteById = async (req, res) => {
 };
 
 // Controller function to delete a propriete by ID
-exports.deleteproprieteById = async (req, res) => {
+proprieteController.deleteproprieteById = async (req, res) => {
   const id = req.params.id;
   try {
     await proprieteService.deleteproprieteById(id);
@@ -54,3 +59,5 @@ exports.deleteproprieteById = async (req, res) => {
     res.status(500).send({ message: 'Une erreur est survenue lors de la suppression de la propriété.' });
   }
 };
+
+module.exports = proprieteController;

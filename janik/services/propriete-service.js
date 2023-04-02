@@ -3,7 +3,11 @@ const proprieteRepository = require('../repositories/propriete-repository');
 const proprieteService = {};
 
 proprieteService.getAllProperties = async () => {
-  return await proprieteRepository.getAllProperties();
+  try {
+    return await proprieteRepository.getAllProperties();    
+  } catch (error) {
+    console.log('Error while fetching properties 111', error);
+  }
 };
 
 proprieteService.getproprieteById = async (id) => {
