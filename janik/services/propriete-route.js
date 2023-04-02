@@ -18,6 +18,8 @@ router.put('/:id', proprieteController.updateproprieteById);
 // Endpoint to delete a property by ID
 router.delete('/:id', proprieteController.deleteproprieteById);
 
+router.post('/changedispo/:id', proprieteController.changeDispo);
+
 module.exports = router;
 
 

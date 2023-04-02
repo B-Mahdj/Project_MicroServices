@@ -11,13 +11,13 @@ proprieteRepository.getproprieteById = async (id) => {
   try {
     const [rows] = await db.execute('SELECT * FROM Propriete WHERE id_propriete = ?', [id]);
     if (rows.length === 0) {
-      console.log(`No propriete found with id ${id}`);
+      console.log(`Aucune propriete trouve au numero ${id}`);
       return null;
     }
-    console.log(`propriete with id ${id} fetched successfully`);
+    console.log(`Propriete ${id} recuperé avec succès`);
     return rows[0];
   } catch (err) {
-    console.log(`Error while fetching propriete with id ${id}`, err);
+    console.log(`Erreur lors de la recuperation de la propriete ${id}`, err);
     throw err;
   }
 };
@@ -28,10 +28,10 @@ proprieteRepository.createpropriete = async (propriete) => {
     const { id_propriete, id_proprietaire, type, adresse, ville, prix, dispo, photo } = propriete;
     console.log(propriete);
     const [result] = await db.execute('INSERT INTO Propriete (id_propriete,id_proprietaire, type, adresse, ville, prix, dispo, photo) VALUES (?,?, ?, ?, ?, ?, ?, ?)', [id_propriete,id_proprietaire, type, adresse, ville, prix, dispo, photo]);
-    console.log('New propriete created successfully');
+    console.log('Creation de la propriete reussie');
     return result.insertId;
   } catch (err) {
-    console.log('Error while creating new propriete', err);
+    console.log('Erreur lors de la creation de la propriete', err);
     throw err;
   }
 };
@@ -50,13 +50,13 @@ proprieteRepository.updateproprieteById = async (id, propriete) => {
     columnValues.push(id);
     const [result] = await db.execute(`UPDATE Propriete SET ${columnsToUpdate} WHERE id_propriete = ?`, columnValues);
     if (result.affectedRows === 0) {
-      console.log(`No propriete found with id ${id}`);
+      console.log(`Aucune propriete trouve au numero ${id}`);
       return 0;
     }
-    console.log(`propriete with id ${id} updated successfully`);
+    console.log(`Propriete ${id} mise à jour avec succès`);
     return result.affectedRows;
   } catch (err) {
-    console.log(`Error while updating propriete with id ${id}`, err);
+    console.log(`Erreur lors de la mise a jour de la propriete ${id}`, err);
     throw err;
   }
 };
@@ -65,13 +65,28 @@ proprieteRepository.deleteproprieteById = async (id) => {
   try {
     const [result] = await db.execute('DELETE FROM Propriete WHERE id_propriete = ?', [id]);
     if (result.affectedRows === 0) {
-      console.log(`No propriete found with id ${id}`);
+      console.log(`Aucune propriete trouve au numero ${id}`);
       return 0;
     }
-    console.log(`propriete with id ${id} deleted successfully`);
+    console.log(`propriete ${id} supprime avec succes`);
     return result.affectedRows;
   } catch (err) {
-    console.log(`Error while deleting propriete with id ${id}`, err);
+    console.log(`Erreur lors de la recuperation de la propriete ${id}`, err);
+    throw err;
+  }
+};
+
+proprieteRepository.updateDispoById = async (id, isDispo) => {
+  try {
+    const [result] = await db.execute('UPDATE Propriete SET dispo = ? WHERE id_propriete = ?', [isDispo, id]);
+    if (result.affectedRows === 0) {
+      console.log(`Aucune propriete trouve au numero ${id}`);
+      return 0;
+    }
+    console.log(`propriete ${id} change à ${isDispo} avec succes`);
+    return result.affectedRows;
+  } catch (err) {
+    console.log(`Erreur pendant l'update ${id}`, err);
     throw err;
   }
 };
