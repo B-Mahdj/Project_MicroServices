@@ -20,9 +20,9 @@ services:
       # Where our data will be persisted
     volumes:
         - ./init.sql:/data/application/init.sql
-  node:
-    build: ./janik
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
+  # node:
+  #   build: ./janik
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - db

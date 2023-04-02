@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+var cors = require('cors');
+app.use(cors());
 
 const proprieteController = require('./services/propriete-controller');
 const proprieteRoutes = require('./services/propriete-route');
