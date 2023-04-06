@@ -23,46 +23,12 @@ const ImgLogement = ({path}) => {
     return <img className={styles.ImgLogement} src={path} alt='pas trouver'/>
 }
 
-const InfoLogement = ({typeLogement, etatLogement, superficie, nbChambre, nbGarage, prix}) => {
+const InfoLogement = ({typeLogement,adresse,ville, prix}) => {
     return <div className={styles.InfoLogement}>
         <div className={styles.TypeLogement}>{typeLogement}</div>
         <div className={styles.Prix}>{prix}€</div>
-    </div>
-}
-
-const DownInfo = ({children}) => {
-    return <div className={styles.DownInfo}>
-        {children}
-    </div>
-}
-
-const InfoPropietaire = ({proprietaire, adresse, ville, dateDispo}) => {
-    return <div className={styles.InfoPropietaire}>
-        <div className={styles.ProprietaireText}>Propriétaire : {proprietaire}</div>
         <div className={styles.PropText}>{adresse}, {ville}</div>
     </div>
-}
-
-const BtnContainer = ({children}) => {
-    return <div className={styles.BtnAgencement}>
-        {children}
-    </div>
-}
-
-const BtnCatalogue = ({children, onClick}) => {
-    return  <div onClick={onClick} className={styles.BtnCatalogue}>{children}
-    </div>
-}
-
-const PopUp = ({closePopup, children, submitData}) => {
-    return <div className={styles.PopUpContainer}>
-                <div className={styles.PopUp}>
-                    <div className={styles.btnPopUp} onClick={closePopup}>
-                        &times;
-                    </div>
-                    {children}
-            </div>
-        </div>
 }
 
 export {
@@ -70,10 +36,5 @@ export {
     TopInfo,
     ImgLogement,
     InfoLogement,
-    DownInfo,
-    InfoPropietaire,
-    BtnContainer,
-    BtnCatalogue,
     GridCard,
-    PopUp
 }
