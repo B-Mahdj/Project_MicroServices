@@ -20,3 +20,22 @@ services:
       # Where our data will be persisted
     volumes:
         - ./init.sql:/data/application/init.sql
+  # node_Service_Propriete:
+  #   build: ./Service_Propriete
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - db
+  # node_Service_Recherche:
+  #   build: ./ServiceRecherche
+  #   ports:
+  #     - "3001:3001"
+  #   depends_on:
+  #     - db
+  # node_Service_Reservation:
+  #   build: ./ServiceReservation
+  #   ports:
+  #     - "3002:3002"
+  #   depends_on:
+  #     - db
+
