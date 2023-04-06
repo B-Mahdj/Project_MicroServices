@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 app.use('/api/v1/reservation', reservationRoutes);
 
 // Start the server
-const port = process.env.PORT || 3000;
+const port = process.env.SERVICE_RESERVATION_PORT || 3002;
 app.listen(port, () => {
   console.log(`Le serveur a démarré sur le port ${port}.`);
 });
