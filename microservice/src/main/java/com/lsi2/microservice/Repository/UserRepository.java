@@ -10,4 +10,7 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<Utilisateur, Long> {
     List<Utilisateur> findByLocataire(Boolean locataire);
     List<Utilisateur> findByProprietaire(Boolean proprietaire);
+
+    Optional<Utilisateur> findByMailAndPassword(String email, String password);
+
 }
