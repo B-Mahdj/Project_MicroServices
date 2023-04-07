@@ -17,20 +17,20 @@ public class UserMapper{
 
 
     public UserDTO toUserDTO(Utilisateur utilisateur) {
-
-        return new UserDTO(utilisateur.getPassword(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getAdresse(), utilisateur.getVille(), utilisateur.getTelephone(), utilisateur.getMail(), utilisateur.getProprietaire(), utilisateur.getLocataire());
+        return new UserDTO(utilisateur.getId_user(), utilisateur.getPassword(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getAdresse(), utilisateur.getVille(), utilisateur.getTelephone(), utilisateur.getMail(), utilisateur.getProprietaire(), utilisateur.getLocataire());
 
     }
 
 
     public List<UserDTO> toUserDTOs(List<Utilisateur> utilisateurs) {
-            List<UserDTO> userDTOS = new ArrayList<>();
-            utilisateurs.forEach(user -> userDTOS.add(toUserDTO(user)));
+        List<UserDTO> userDTOS = new ArrayList<>();
+        utilisateurs.forEach(user -> userDTOS.add(toUserDTO(user)));
         return userDTOS;
     }
 
     public Utilisateur toUser(UserDTO userDTO) {
         Utilisateur user = new Utilisateur();
+        user.setId_user(userDTO.getId());
         user.setPassword(userDTO.getPassword());
         user.setNom(userDTO.getNom());
         user.setPrenom(userDTO.getPrenom());

@@ -104,4 +104,9 @@ public class UserController {
         return locationMapper.toLocationDTO(locationService.getLocationById(idLocation).get());
     }
 
+    @GetMapping("/login")
+    public UserDTO getUserByEmailAndPassword(@RequestParam String email, @RequestParam String password){
+        return userMapper.toUserDTO(userService.getUserByMailAndPassword(email, password).get());
+    }
+
 }

@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class UserDTO {
+
+    private Long id;
     private String password;
 
     private String nom;
@@ -26,7 +28,8 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(String password, String nom, String prenom, String adresse, String ville, String mail, String telephone, Boolean proprietaire, Boolean locataire) {
+    public UserDTO(Long id, String password, String nom, String prenom, String adresse, String ville, String mail, String telephone, Boolean proprietaire, Boolean locataire) {
+        this.id = id;
         this.password = password;
         this.nom = nom;
         this.prenom = prenom;
@@ -36,6 +39,14 @@ public class UserDTO {
         this.telephone = telephone;
         this.proprietaire = proprietaire;
         this.locataire = locataire;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getPassword() {
@@ -113,7 +124,8 @@ public class UserDTO {
     @Override
     public String toString() {
         return "UserDTO{" +
-                "password='" + password + '\'' +
+                "id=" + id +
+                ", password='" + password + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", adresse='" + adresse + '\'' +
