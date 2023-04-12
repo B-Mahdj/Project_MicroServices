@@ -29,8 +29,8 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public List<Utilisateur> getUserByMailAndPassword(String mail, String password){
-        return userRepository.findAll();
+    public Optional<Utilisateur> getUserByMailAndPassword(String mail, String password){
+        return userRepository.findByMailAndPassword(mail, password);
     }
 
     public Utilisateur saveUser(Utilisateur user){

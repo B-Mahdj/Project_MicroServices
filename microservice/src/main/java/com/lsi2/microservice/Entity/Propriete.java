@@ -14,7 +14,7 @@ public class Propriete {
     private Long id_propriete;
 
     @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "id_locataire")
+    @JoinColumn(name = "id_proprietaire")
     private Utilisateur utilisateur;
 
     @OneToMany(mappedBy = "propriete")

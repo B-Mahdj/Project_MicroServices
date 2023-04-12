@@ -5,7 +5,7 @@ const reservationRepository = {};
 reservationRepository.createReservation = async (reservation) => { // ok
   try {
     const { id_locataire, id_propriete, date_deb, date_fin } = reservation;
-    const [result] = await db.execute('INSERT INTO Location (id_location,id_locataire, id_propriete, date_deb, date_fin,annule) VALUES (5,?, ?, ?, ?,false)', [id_locataire, id_propriete, date_deb, date_fin]);
+    const [result] = await db.execute('INSERT INTO location (id_location,id_locataire, id_propriete, date_deb, date_fin,annule) VALUES (5,?, ?, ?, ?,false)', [id_locataire, id_propriete, date_deb, date_fin]);
     console.log('Création de la réservation réussie');
     return result.insertId;
   } catch (err) {
@@ -16,7 +16,7 @@ reservationRepository.createReservation = async (reservation) => { // ok
 
 reservationRepository.annulerReservationById = async (id) => { // ok
   try {
-    const [result] = await db.execute('UPDATE Location SET annule = true WHERE id_location = ?', [id]);
+    const [result] = await db.execute('UPDATE location SET annule = true WHERE id_location = ?', [id]);
     if (result.affectedRows === 0) {
       console.log(`Aucune réservation trouvée avec l'identifiant ${id}`);
       return 0;
@@ -31,7 +31,7 @@ reservationRepository.annulerReservationById = async (id) => { // ok
 
 reservationRepository.getReservationsByLocataireId = async (id_locataire) => { // OK
   try {
-    const [rows] = await db.execute('SELECT * FROM Location  WHERE id_locataire = ?', [id_locataire]); 
+    const [rows] = await db.execute('SELECT * FROM location  WHERE id_locataire = ?', [id_locataire]);
     if (rows.length === 0) {
       console.log(`Aucune réservation trouvée pour le locataire avec l'identifiant ${id_locataire}`);
       return null;
@@ -61,7 +61,7 @@ reservationRepository.updateReservationById = async (id, reservation) => { // PB
 
     columnsToUpdate = columnsToUpdate.slice(0, -1); // Enlever la dernière virgule
     columnValues.push(id);
-    const [result] = await db.execute(`UPDATE Location SET ${columnsToUpdate} WHERE id_location = ?`, columnValues);
+    const [result] = await db.execute(`UPDATE location SET ${columnsToUpdate} WHERE id_location = ?`, columnValues);
     if (result.affectedRows === 0) {
       console.log(`Aucune réservation trouvée avec l'identifiant ${id}`);
       return 0;
@@ -77,7 +77,7 @@ reservationRepository.updateReservationById = async (id, reservation) => { // PB
 
 reservationRepository.getReservationsByProprieteId = async (id_propriete) => {
   try {
-    const [rows] = await db.execute('SELECT * FROM Location WHERE id_propriete = ?', [id_propriete]);
+    const [rows] = await db.execute('SELECT * FROM location WHERE id_propriete = ?', [id_propriete]);
     if (rows.length === 0) {
       console.log(`Aucune réservation trouvée pour la propriété avec l'identifiant ${id_propriete}`);
       return null;

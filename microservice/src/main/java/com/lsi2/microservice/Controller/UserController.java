@@ -105,12 +105,12 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public List<UserDTO> getUserByEmailAndPassword(@RequestParam String email, @RequestParam String password){
-//        if(userService.getUserByMailAndPassword(email,password).isPresent()){
-//            return userMapper.toUserDTO(userService.getUserByMailAndPassword(email, password).get());
-//        }
-//       else return new UserDTO();
-        return userMapper.toUserDTOs(userService.getUserByMailAndPassword(email,password    ));
+    public UserDTO getUserByEmailAndPassword(@RequestParam String email, @RequestParam String password){
+        if(userService.getUserByMailAndPassword(email,password).isPresent()){
+            return userMapper.toUserDTO(userService.getUserByMailAndPassword(email, password).get());
+        }
+       else return new UserDTO();
+
     }
 
 }
