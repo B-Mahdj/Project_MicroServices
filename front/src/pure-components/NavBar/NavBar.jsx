@@ -25,7 +25,7 @@ const NavButton = ({children, onClick}) => {
 const NavBar = () => {
     const { user } = useContext(UserContext);
     return <Container>
-    <Link to = '/' style={{ textDecoration: 'none'}}>
+    <Link to = '/home' style={{ textDecoration: 'none'}}>
         <IconMenu>{user.name}</IconMenu>
     </Link>
     <div style={{padding : '50px', width : '50%', display : 'flex', justifyContent : 'space-between', alignItems : 'center'}}>

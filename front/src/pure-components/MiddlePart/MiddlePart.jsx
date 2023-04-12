@@ -12,7 +12,7 @@ const UpContainer = () => {
     return <div className={styles.upContainer}>
         <img className={styles.DevantureImg} src={devanture} alt='pas trouver'/>
         <div className={styles.WelcomeText}>
-            Bienvenue sur le site internet de notre agence mmobilière 
+        Bienvenue sur le site internet de notre agence immobilière 
         </div>
     </div>
 }
