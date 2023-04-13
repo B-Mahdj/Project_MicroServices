@@ -2,7 +2,6 @@ package com.lsi2.microservice.Mapper;
 
 import com.lsi2.microservice.DTO.LocationDTO;
 import com.lsi2.microservice.Entity.Location;
-import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
