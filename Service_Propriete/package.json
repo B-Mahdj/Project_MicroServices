@@ -15,8 +15,5 @@
     "mongoose": "^7.0.3",
     "mysql2": "^3.2.0",
     "node": "^19.8.1"
-  },
-  "devDependencies": {
-    "dotenv": "^16.0.3"
   }
 }
