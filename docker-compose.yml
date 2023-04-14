@@ -20,24 +20,24 @@ services:
     # Where our data will be persisted
     volumes:
       - ./init.sql:/data/application/init.sql
-#  node_service_propriete:
-#    build: ./Service_Propriete
-#    ports:
-#      - "3000:3000"
-#    depends_on:
-#      - db
-#  node_service_recherche:
-#    build: ./ServiceRecherche
-#    ports:
-#      - "3001:3001"
-#    depends_on:
-#      - db
-#  node_service_reservation:
-#    build: ./ServiceReservation
-#    ports:
-#      - "3002:3002"
-#    depends_on:
-#      - db
+  node_service_propriete:
+    build: ./Service_Propriete
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+  node_service_recherche:
+    build: ./ServiceRecherche
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+  node_service_reservation:
+    build: ./ServiceReservation
+    ports:
+      - "3002:3002"
+    depends_on:
+      - db
   springboot_service_utilisateur:
     build: ./Service_Utilisateur  # Chemin vers le répertoire contenant votre application Spring Boot
     ports:
@@ -54,3 +54,4 @@ services:
 #      - JAVAX_PERSISTENCE_JDBC_DRIVER=com.mysql.jdbc.Driver
 #      - JAVAX_PERSISTENCE_JDBC_URL=jdbc:mysql://$${MYSQL_HOST:localhost}:3306/BD
 #      - ORG_HIBERNATE_DIALECT_DIALECT=org.hibernate.dialect.MySQL8Dialect
+
