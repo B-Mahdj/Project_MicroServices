@@ -18,7 +18,7 @@ public class Location {
     @JoinColumn(name = "id_propriete")
     private Propriete propriete;
 
-    private String date_debut;
+    private String date_deb;
 
     private String date_fin;
 
@@ -31,7 +31,7 @@ public class Location {
         this.id_location = id_location;
         this.utilisateur = utilisateur;
         this.propriete = propriete;
-        this.date_debut = date_debut;
+        this.date_deb = date_debut;
         this.date_fin = date_fin;
         this.annule = annule;
     }
@@ -60,12 +60,12 @@ public class Location {
         this.propriete = propriete;
     }
 
-    public String getDate_debut() {
-        return date_debut;
+    public String getDate_deb() {
+        return date_deb;
     }
 
-    public void setDate_debut(String date_debut) {
-        this.date_debut = date_debut;
+    public void setDate_deb(String date_deb) {
+        this.date_deb = date_deb;
     }
 
     public String getDate_fin() {
@@ -90,7 +90,7 @@ public class Location {
                 "id=" + id_location +
                 ", utilisateur=" + utilisateur +
                 ", propriete=" + propriete +
-                ", date_debut='" + date_debut + '\'' +
+                ", date_debut='" + date_deb + '\'' +
                 ", date_fin='" + date_fin + '\'' +
                 ", annule=" + annule +
                 '}';
