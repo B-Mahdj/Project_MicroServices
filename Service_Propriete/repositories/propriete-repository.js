@@ -27,7 +27,7 @@ proprieteRepository.createpropriete = async (propriete) => {
   try {
     const {id_proprietaire, type, adresse, ville, prix, dispo, photo } = propriete;
     console.log(propriete);
-    const [result] = await db.execute('INSERT INTO propriete (id_proprietaire, type, adresse, ville, prix, dispo, photo) VALUES (?, ?, ?, ?, ?, ?, ?)', [id_propriete,id_proprietaire, type, adresse, ville, prix, dispo, photo]);
+    const [result] = await db.execute('INSERT INTO propriete (id_proprietaire, type, adresse, ville, prix, dispo, photo) VALUES (?, ?, ?, ?, ?, ?, ?)', [id_proprietaire, type, adresse, ville, prix, dispo, photo]);
     console.log('Creation de la propriete reussie');
     return result.insertId;
   } catch (err) {
