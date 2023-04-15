@@ -18,7 +18,7 @@ PRIMARY KEY (id_user)
 );
 
 CREATE TABLE IF NOT EXISTS propriete(
-id_propriete INT(10) UNSIGNED UNIQUE NOT NULL,
+id_propriete INT(10) UNSIGNED UNIQUE NOT NULL AUTO_INCREMENT,
 id_proprietaire INT(10) UNSIGNED,
 type VARCHAR(50),
 adresse VARCHAR(50),
