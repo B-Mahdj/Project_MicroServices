@@ -20,38 +20,49 @@ services:
     # Where our data will be persisted
     volumes:
       - ./init.sql:/data/application/init.sql
+    networks: 
+      - projet_microservices_network	
   node_service_propriete:
     build: ./Service_Propriete
     ports:
       - "3000:3000"
     depends_on:
       - db
+    networks:
+      - projet_microservices_network
   node_service_recherche:
     build: ./ServiceRecherche
     ports:
       - "3001:3001"
     depends_on:
       - db
+    networks:
+      - projet_microservices_network
   node_service_reservation:
     build: ./ServiceReservation
     ports:
       - "3002:3002"
     depends_on:
       - db
-#  springboot_service_utilisateur:
-#    build: ./Service_Utilisateur  # Chemin vers le répertoire contenant votre application Spring Boot
-#    ports:
-#      - "8080:8080"  # Port de l'application Spring Boot
-#    depends_on:
-#      - db  # Nom du service de base de données que votre application Spring Boot utilise
-#    environment:
-#      - SPRING_JPA_HIBERNATE_DDL_AUTO=none
-#      - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/BD
-#      - SPRING_DATASOURCE_USERNAME=root
-#      - SPRING_DATASOURCE_PASSWORD=root_password
-#      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
-#      - SPRING_JPA_DATABASE-PLATFORM=org.hibernate.dialect.MySQLDialect
-#      - JAVAX_PERSISTENCE_JDBC_DRIVER=com.mysql.jdbc.Driver
-#      - JAVAX_PERSISTENCE_JDBC_URL=jdbc:mysql://$${MYSQL_HOST:localhost}:3306/BD
-#      - ORG_HIBERNATE_DIALECT_DIALECT=org.hibernate.dialect.MySQL8Dialect
+    networks:
+      - projet_microservices_network
+  springboot_service_utilisateur:
+    build: ./Service_Utilisateur  # Chemin vers le répertoire contenant votre application Spring Boot
+    ports:
+      - "8080:8080"  # Port de l'application Spring Boot
+    depends_on:
+      - db  # Nom du service de base de données que votre application Spring Boot utilise
+    environment:
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=none
+      - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/BD
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root_password
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+      - SPRING_JPA_DATABASE-PLATFORM=org.hibernate.dialect.MySQLDialect
+      - JAVAX_PERSISTENCE_JDBC_DRIVER=com.mysql.jdbc.Driver
+      - JAVAX_PERSISTENCE_JDBC_URL=jdbc:mysql://$${MYSQL_HOST:localhost}:3306/BD
+      - ORG_HIBERNATE_DIALECT_DIALECT=org.hibernate.dialect.MySQL8Dialect
 
+#Name the network
+networks:
+   projet_microservices_network: {}
