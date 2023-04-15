@@ -62,6 +62,8 @@ services:
       - JAVAX_PERSISTENCE_JDBC_DRIVER=com.mysql.jdbc.Driver
       - JAVAX_PERSISTENCE_JDBC_URL=jdbc:mysql://$${MYSQL_HOST:localhost}:3306/BD
       - ORG_HIBERNATE_DIALECT_DIALECT=org.hibernate.dialect.MySQL8Dialect
+    networks:
+      - projet_microservices_network
 
 #Name the network
 networks:
