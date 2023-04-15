@@ -19,7 +19,7 @@ public class LocationMapper {
     private ProprieteMapper proprieteMapper;
 
     public LocationDTO toLocationDTO(Location location){
-        return new LocationDTO(userMapper.toUserDTO(location.getUtilisateur()),proprieteMapper.mapToDTO2(location.getPropriete()),location.getDate_debut(), location.getDate_fin(), location.getAnnule());
+        return new LocationDTO(userMapper.toUserDTO(location.getUtilisateur()),proprieteMapper.mapToDTO2(location.getPropriete()),location.getDate_deb(), location.getDate_fin(), location.getAnnule());
     }
 
     public List<LocationDTO> toLocationDTOs(List<Location>location){
