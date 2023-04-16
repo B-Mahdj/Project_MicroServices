@@ -1,6 +1,6 @@
 .ImgLogement{
     width:50%;
-    margin: 50px 0px 20px 0px;
+    margin: 20px 0px 20px 0px;
     border-radius: 20px;
 }
 
@@ -16,7 +16,7 @@
     font-size: 50px;
     width: 80%;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
     flex-direction: column;
 }
 

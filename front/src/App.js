@@ -1,11 +1,11 @@
-import React, { createContext, useEffect, useState } from 'react';
-import { Routes, Route, useNavigate, Navigate  } from 'react-router-dom';
+import { useEffect, createContext, useState } from 'react';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import Catalogue from './containers/Catalogue';
 import AjoutBien from './containers/Ajout-bien-immobilier';
 import Home from './containers/Home';
-import GestionFinanciere from './containers/Gestion-Financiere';
 import BienImmobilier from './containers/BienImmobilier';
 import LoginPage from './containers/Login/login';
+import Account from './containers/Account/Account'
 
 export const UserContext = createContext(null);
 
@@ -14,20 +14,28 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    if(sessionStorage.getItem('user')){
+    if (sessionStorage.getItem('user')) {
       setUser(JSON.parse(sessionStorage.getItem('user')));
     }
   }, []);
 
-  const setUserHandler = (userData) => {
-    sessionStorage.setItem('user', JSON.stringify(userData))
-    setUser(userData)
-    navigate('/home')
-  };
+  useEffect(() => {
+    const handleLogout = () => {
+      setUser(null)
+      sessionStorage.removeItem('user')
+      navigate('/')
+    };
+  
+    const path = window.location.pathname
+    if (path === '/logout') {
+      handleLogout()
+    }
+  }, [navigate]);
 
-  const logout = () => {
-    sessionStorage.removeItem('user')
-    console.log(sessionStorage.getItem('user'))
+  const setUserHandler = (userData) => {
+    setUser(userData);
+    sessionStorage.setItem('user', JSON.stringify(userData));
+    navigate('/home');
   };
 
   return (
@@ -39,17 +47,11 @@ function App() {
             <Route path="/Catalogue" element={<Catalogue />} />
             <Route path="/BienImmobilier" element={<BienImmobilier />} />
             <Route path="/Ajout-bien-immobilier" element={<AjoutBien />} />
-            <Route path="/Gestion-Financiere" element={<GestionFinanciere />} />
-            <Route path="/logout" element={logout()} />
-            <Route path="*" element={<Navigate to="/home" replace />} />
+            <Route path="/Account" element={<Account />} />
           </>
         ) : (
           <>
-            <Route
-              path="/"
-              element={<LoginPage />}
-            />
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="/" element={<LoginPage />} />
           </>
         )}
       </Routes>

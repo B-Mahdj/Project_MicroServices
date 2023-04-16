@@ -33,6 +33,37 @@ const DisplayImg = ({path}) => {
     </div>
 }
 
+const ImageUploader = ({ fileToDisplay, setfileToDisplay, setfileName }) => {
+    return (
+      <>
+        <LabelForm>
+          <InputImg
+            type="file"
+            onChange={(e) => {
+              setfileToDisplay(URL.createObjectURL(e.target.files[0]));
+              setfileName(e.target.files[0].name);
+            }}
+            style={{ display: "none" }}
+            accept="image/png, image/jpeg"
+          />
+        </LabelForm>
+        {fileToDisplay ? (
+          <DisplayImg path={fileToDisplay}></DisplayImg>
+        ) : (
+          <NoImage></NoImage>
+        )}
+      </>
+    );
+  };
+
+const NoImage = () => {
+    return (
+      <div className={styles.DisplayNoImage}>
+        <div className={styles.NoImage}>Aucune image uploadée</div>
+      </div>
+    );
+  };
+
 const Button = ({onClick, children}) => {
     return <div onClick={onClick} className={styles.btn}>{children}</div>
 }
@@ -57,5 +88,7 @@ export {
     LeftForm,
     LabelForm,
     DisplayImg,
-    InputImg
+    InputImg,
+    NoImage,
+    ImageUploader
 }

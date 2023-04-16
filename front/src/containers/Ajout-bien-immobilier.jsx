@@ -1,50 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext} from 'react'
 import Background from '../pure-components/Background/Background'
 import { PrincipalContainer } from '../pure-components/MiddlePart/MiddlePart'
 import { NavBar } from '../pure-components/NavBar/NavBar'
-import {FormContainer, Input, InputImg, Button, RightForm, LeftForm, LabelForm, DisplayImg} from '../pure-components/Formulaire/Formulaire'
+import { UserContext } from '../App'
+import {FormContainer, Input, InputImg, Button, RightForm, LeftForm, LabelForm, DisplayImg, NoImage, ImageUploader} from '../pure-components/Formulaire/Formulaire'
 import Axios from 'axios';
 
 const formData = [
     {
+        text: "Type de bien",
+        type: "text",
+        key: "type"
+    },
+    {
         text: "Adresse",
         type: "text",
         key: "adresse"
-    },
-    {
-        text: "Nom du Propriétaire",
-        type: "text",
-        key: "proprietaire"
-    },
-    {
-        text: "Type du bien",
-        type: "text",
-        key: "typeBien"
-    },
-    {
-        text: "Nombre de pièces",
-        type: "text",
-        key: "nbPiece"
-    },
-    {
-        text: "Superficie habitable",
-        type: "text",
-        key: "superficie"
-    },
-    {
-        text: "Etat de l'habitation",
-        type: "text",
-        key: "etat"
-    },
-    {
-        text: "Prix de vente",
-        type: "text",
-        key: "prix"
-    },
-    {
-        text: "Date de disponibilité",
-        type: "date",
-        key: "dateDispo"
     },
     {
         text: "Ville",
@@ -52,27 +23,35 @@ const formData = [
         key: "ville"
     },
     {
-        text: "Nombre de garage",
+        text: "Prix de vente",
         type: "text",
-        key: "nbGarage"
-    },
-    {
-        text: "Id de l'agent",
-        type: "text",
-        key: "idAgent"
+        key: "prix"
     }
+    
 ]
 
 const AjoutBien = () => {
+    const { user } = useContext(UserContext);
     const [data, setData] = useState({})
-    const [fileToDisplay, setfileToDisplay] = useState({})
+    const [fileToDisplay, setfileToDisplay] = useState("")
     const [fileName, setfileName] = useState({})
 
     const submitData = async () => {
-		Axios.post("http://localhost:3000/api/insertBien", {
-        data : data, file : fileName
-    })
-    }
+        try {
+          const response = await Axios.post("http://localhost:3000/api/v1/proprietes", {
+            type: data.type,
+            adresse: data.adresse,
+            ville: data.ville,
+            prix: data.prix,
+            id_proprietaire: user.id,
+            dispo: true,
+            photo: fileName,
+          });
+          console.log(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
     
     return <Background>    
         <NavBar></NavBar>
@@ -92,15 +71,11 @@ const AjoutBien = () => {
                     }
                 </LeftForm>
                 <RightForm>
-                    <LabelForm>
-                        <InputImg type='file' onChange={(e) => {
-                            setfileToDisplay(URL.createObjectURL(e.target.files[0]))
-                            setfileName(e.target.files[0].name)
-                        }} style={{display:'none'}} accept='image/png, image/jpeg'/>
-                    </LabelForm>
-                    {
-                        fileToDisplay ? <DisplayImg path={fileToDisplay}></DisplayImg> : <DisplayImg></DisplayImg>
-                    }
+                    <ImageUploader
+                        fileToDisplay={fileToDisplay}
+                        setfileToDisplay={setfileToDisplay}
+                        setfileName={setfileName}
+                    />
                     <Button onClick={submitData}>Enregistrer le bien</Button>
                 </RightForm>
             </FormContainer>

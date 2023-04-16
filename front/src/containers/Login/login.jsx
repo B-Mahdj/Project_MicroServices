@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../../App';
 import styles from './login.module.css';
-import { Axios } from 'axios';
+import axios from 'axios';
 
 const LoginPage = () => {
   const { setUserHandler } = useContext(UserContext);
@@ -9,10 +9,11 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = (e) => {
-    Axios.get('http://localhost:8080/login', {
+    e.preventDefault();
+    axios.get('http://localhost:8080/login', {
         params: {
-            email: user.email,
-            password: user.password
+            email: email,
+            password: password
         }
         })
         .then(response => {

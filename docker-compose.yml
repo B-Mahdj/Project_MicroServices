@@ -64,6 +64,18 @@ services:
       - ORG_HIBERNATE_DIALECT_DIALECT=org.hibernate.dialect.MySQL8Dialect
     networks:
       - projet_microservices_network
+  react_app:
+    build: ./front
+    container_name: react_app
+    ports:
+      - "3003:3000"
+    depends_on:
+      - node_service_propriete
+      - node_service_recherche
+      - node_service_reservation
+      - springboot_service_utilisateur
+    networks:
+      - projet_microservices_network
 
 #Name the network
 networks:
