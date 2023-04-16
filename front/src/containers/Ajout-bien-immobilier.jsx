@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext} from 'react'
+import React, { useState, useContext} from 'react'
 import Background from '../pure-components/Background/Background'
 import { PrincipalContainer } from '../pure-components/MiddlePart/MiddlePart'
 import { NavBar } from '../pure-components/NavBar/NavBar'
 import { UserContext } from '../App'
-import {FormContainer, Input, InputImg, Button, RightForm, LeftForm, LabelForm, DisplayImg, NoImage, ImageUploader} from '../pure-components/Formulaire/Formulaire'
+import {FormContainer, Input, Button, RightForm, LeftForm, ImageUploader} from '../pure-components/Formulaire/Formulaire'
 import Axios from 'axios';
 
 const formData = [

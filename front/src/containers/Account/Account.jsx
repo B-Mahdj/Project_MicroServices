@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext} from 'react'
+import React, {useContext} from 'react'
 import Background from '../../pure-components/Background/Background'
 import { PrincipalContainer } from '../../pure-components/MiddlePart/MiddlePart'
 import { NavBar } from '../../pure-components/NavBar/NavBar'
@@ -34,13 +34,10 @@ const AccountInfo = () => {
 }
 
 const Logout = () => {
-    const img = require('../../assets/utilisateur.png');
     return <button className={styles.logoutButton}>Déconnexion</button>
 }
 
 const Account = () => {
-
-    
     return <Background>    
         <NavBar></NavBar>
         <PrincipalContainer>

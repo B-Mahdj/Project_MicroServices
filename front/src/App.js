@@ -1,5 +1,5 @@
 import { useEffect, createContext, useState } from 'react';
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Catalogue from './containers/Catalogue';
 import AjoutBien from './containers/Ajout-bien-immobilier';
 import Home from './containers/Home';
